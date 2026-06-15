@@ -73,15 +73,21 @@ def mm1k():
 
     rho = lamb / mu
 
-    P0 = (1 - rho) / (1 - rho ** (K + 1))
+    if rho == 1:
+        P0 = 1 / (K + 1)
+    else:
+        P0 = (1 - rho) / (1 - rho ** (K + 1))
 
     Pk = P0 * rho ** K
 
-    L = (
-            rho / (1 - rho)
-            - ((K + 1) * rho ** (K + 1))
-            / (1 - rho ** (K + 1))
-    )
+    if rho == 1:
+        L = K / 2
+    else:
+        L = (
+                rho / (1 - rho)
+                - ((K + 1) * rho ** (K + 1))
+                / (1 - rho ** (K + 1))
+        )
 
     lamb_barra = lamb * (1 - Pk)
 
